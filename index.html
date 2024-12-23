@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text Generator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f4f4f9;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: auto;
+            padding: 20px;
+            background: #ffffff;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+        input, textarea, button {
+            width: 100%;
+            margin: 10px 0;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        textarea {
+            height: 200px;
+            resize: none;
+        }
+        button {
+            color: #fff;
+            background-color: #007bff;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Text Genarator</h1>
+        <p>Enter your text and the number of repetitions.</p>
+        <input type="text" id="inputText" placeholder="Enter your text (e.g., sorry)" />
+        <input type="number" id="repeatCount" placeholder="How many repetitions?" min="1" />
+        <button onclick="generateText()">Generate Text</button>
+        <textarea id="output" readonly placeholder="The generated text will appear here"></textarea>
+        <button onclick="copyText()">Copy Text</button>
+    </div>
+
+    <script>
+        // Function to generate the text
+        function generateText() {
+            const inputText = document.getElementById("inputText").value;
+            const repeatCount = parseInt(document.getElementById("repeatCount").value);
+            const output = document.getElementById("output");
+
+            if (!inputText || isNaN(repeatCount) || repeatCount <= 0) {
+                alert("Please fill out both fields correctly!");
+                return;
+            }
+
+            let result = "";
+            for (let i = 0; i < repeatCount; i++) {
+                result += inputText + "\n";
+            }
+            output.value = result;
+        }
+
+        // Function to copy the text
+        function copyText() {
+            const output = document.getElementById("output");
+            output.select();
+            document.execCommand("copy");
+            alert("Text has been copied!");
+        }
+    </script>
+</body>
+</html>
